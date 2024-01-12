@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #calculator {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #calculator-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #answer-box {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        #button-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        .button {
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+
+        #reset-button {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
+
+        #equal-button {
+            background-color: #4caf50;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <div id="calculator-title">Simple Calculator</div>
+        <input type="text" id="answer-box" readonly>
+        <div id="button-container">
+            <button class="button" onclick="appendToAnswer('1')">1</button>
+            <button class="button" onclick="appendToAnswer('2')">2</button>
+            <button class="button" onclick="appendToAnswer('3')">3</button>
+            <button class="button" onclick="appendToAnswer('+')">+</button>
+            <button class="button" onclick="appendToAnswer('4')">4</button>
+            <button class="button" onclick="appendToAnswer('5')">5</button>
+            <button class="button" onclick="appendToAnswer('6')">6</button>
+            <button class="button" onclick="appendToAnswer('-')">-</button>
+            <button class="button" onclick="appendToAnswer('7')">7</button>
+            <button class="button" onclick="appendToAnswer('8')">8</button>
+            <button class="button" onclick="appendToAnswer('9')">9</button>
+            <button class="button" onclick="appendToAnswer('*')">*</button>
+            <button class="button" onclick="appendToAnswer('0')">0</button>
+            <button class="button" onclick="appendToAnswer('.')">.</button>
+            <button class="button" onclick="clearAnswer()">C</button>
+            <button class="button" id="reset-button" onclick="clearAll()">Reset</button>
+            <button class="button" id="equal-button" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToAnswer(value) {
+            document.getElementById('answer-box').value += value;
+        }
+
+        function clearAnswer() {
+            document.getElementById('answer-box').value = '';
+        }
+
+        function clearAll() {
+            clearAnswer();
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('answer-box').value = eval(document.getElementById('answer-box').value);
+            } catch (error) {
+                document.getElementById('answer-box').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
